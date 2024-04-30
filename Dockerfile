@@ -1,5 +1,5 @@
 # Этап сборки
-FROM maven:3.8.2-jdk-11 AS build
+FROM maven:3.8.2-jdk-17 AS build
 WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
