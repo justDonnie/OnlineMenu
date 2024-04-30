@@ -19,6 +19,21 @@
 
 FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
-COPY target/*.jar classes/com/example/tisoproject.jar
-ENTRYPOINT ["java","-jar","/classes/com/example/tisoproject.jar"]
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM maven:3.8.2-eclipse-temurin-17
+COPY --from=build /target/TisoProject-0.0.1-SNAPSHOT.jar TisoProject.jar
 EXPOSE 8080
+ENTRYPOINT ["java","-jar","TisoProject.jar"]
+
+
+#
+#FROM maven:3.8.5-openjdk-17 AS build
+#COPY . .
+#RUN mvn clean package -DskipTests
+#
+#FROM openjdk:17.0.1-jdk-slim
+#COPY --from=build /target/jolaman-0.0.1-SNAPSHOT.jar jolaman.jar
+#EXPOSE 8080
+#ENTRYPOINT ["java", "-jar", "jolaman.jar"]
