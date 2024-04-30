@@ -19,6 +19,6 @@
 
 FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
-COPY target/*.jar tisoproject.jar
-ENTRYPOINT ["java","-jar","/tisoproject.jar"]
+COPY target/*.jar classes/com/example/tisoproject.jar
+ENTRYPOINT ["java","-jar","/classes/com/example/tisoproject.jar"]
 EXPOSE 8080
