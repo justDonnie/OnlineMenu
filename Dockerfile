@@ -6,7 +6,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 COPY --from=build /target/tisoproject-0.0.1-SNAPSHOT.jar tisoproject.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "jolaman.jar"]
+ENTRYPOINT ["java", "-jar", "tisoproject.jar"]
 
 #FROM maven:3.8.2-jdk-17 AS build
 #WORKDIR /app
